@@ -14,11 +14,20 @@
   </div>
 </template>
 <script>
+let vueObject = null;
+document.addEventListener("keypress",function(event){
+  if(event.keyCode == 13){
+    vueObject.intoMain();
+  }
+});
 export default {
   name: "login",
   props: {
     loginName: String,
     password: String
+  },
+  created(){
+    vueObject = this;
   },
   data:function(){
     return {
