@@ -1,26 +1,45 @@
 <template>
   <div id="app">
-    <login loginName="Jonh"/>
+    <router-view>
+    </router-view>
   </div>
 </template>
 
 <script>
-import login from './components/login.vue'
-export default {
-  name: 'app',
-  components: {
-    login
-  }
-}
-</script>
+import Vue from "vue";
+import VueRouter from "vue-router";
+import login from "./components/login.vue";
+import main from './components/main';
 
+Vue.use(VueRouter);
+
+const routes = [
+  {
+    path: "/",
+    redirect: '/login/admin/123456'
+  },
+  {
+    path: "/login/:loginName/:password",
+    component: login
+  },
+  {
+    path: "/main/:user_id",
+    component: main
+  }
+];
+
+const router = new VueRouter({
+  routes
+});
+export default {
+  name: "app",
+  router
+};
+</script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  html,body{
+    margin: 0;
+    padding: 0;
+  }
 </style>
+
